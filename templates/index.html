@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>Resume Analyzer</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}" />
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap"
+          rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header>
+
+            <h1>📄 Resume Analyzer</h1>
+
+            <p>
+                Upload your resume and get ATS score,
+                skill gap analysis, and suggestions.
+            </p>
+
+        </header>
+
+        <!-- UPLOAD CARD -->
+        <div class="card">
+
+            <h2>Upload Resume</h2>
+
+            <form id="resumeForm"
+                  enctype="multipart/form-data">
+
+                <!-- FILE UPLOAD -->
+                <div class="upload-area"
+                     id="uploadArea">
+
+                    <div class="upload-icon">
+                        📁
+                    </div>
+
+                    <p>
+                        Click to upload or drag & drop
+                    </p>
+
+                    <p class="hint">
+                        PDF files only — max 5MB
+                    </p>
+
+                    <input type="file"
+                           id="resumeFile"
+                           name="resume"
+                           accept=".pdf"
+                           onchange="handleFile(this)" />
+
+                </div>
+
+                <!-- FILE NAME -->
+                <div class="file-name"
+                     id="fileName"
+                     style="display:none">
+
+                    📄 <span id="fileNameText"></span>
+
+                </div>
+
+                <!-- ROLE SELECTION -->
+                <div class="form-group">
+
+                    <label>
+                        Target Job Role
+                    </label>
+
+                    <select id="jobRole"
+                            name="role">
+
+                        <option value="Web Developer">
+                            Web Developer
+                        </option>
+
+                        <option value="Backend Developer">
+                            Backend Developer
+                        </option>
+
+                        <option value="Data Scientist">
+                            Data Scientist
+                        </option>
+
+                        <option value="AI/ML Engineer">
+                            AI/ML Engineer
+                        </option>
+
+                        <option value="Mobile Developer">
+                            Mobile Developer
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- ANALYZE BUTTON -->
+                <button type="button"
+                        onclick="analyzeResume()">
+
+                    Analyze Resume
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- RESULT CARD -->
+        <div class="card"
+             id="resultCard"
+             style="display:none">
+
+            <h2>
+                Analysis Result
+            </h2>
+
+            <!-- ATS SCORE -->
+            <div class="score-section">
+
+                <div class="score-circle">
+
+                    <span id="scoreNum">
+                        0
+                    </span>
+
+                    <small>
+                        ATS Score
+                    </small>
+
+                </div>
+
+                <div class="score-info">
+
+                    <p id="scoreMsg"></p>
+
+                    <p class="role-label">
+
+                        Role:
+                        <strong id="roleLabel"></strong>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- BASIC INFO -->
+            <div class="info-section">
+
+                <h3>
+                    Resume Information
+                </h3>
+
+                <div class="info-grid">
+
+                    <!-- NAME -->
+                    <div class="info-item">
+
+                        <span>
+                            Name
+                        </span>
+
+                        <strong id="candidateName">
+                            —
+                        </strong>
+
+                    </div>
+
+                    <!-- EMAIL -->
+                    <div class="info-item">
+
+                        <span>
+                            Email
+                        </span>
+
+                        <strong id="email">
+                            —
+                        </strong>
+
+                    </div>
+
+                    <!-- PHONE -->
+                    <div class="info-item">
+
+                        <span>
+                            Phone
+                        </span>
+
+                        <strong id="phone">
+                            —
+                        </strong>
+
+                    </div>
+
+                    <!-- WORD COUNT -->
+                    <div class="info-item">
+
+                        <span>
+                            Word Count
+                        </span>
+
+                        <strong id="wordCount">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SKILLS FOUND -->
+            <div class="skills-section">
+
+                <h3>
+                    Skills Found
+                </h3>
+
+                <div class="tags"
+                     id="skillsFound">
+
+                </div>
+
+            </div>
+
+            <!-- MATCHED SKILLS -->
+            <div class="skills-section">
+
+                <h3>
+                    Matched Skills
+                </h3>
+
+                <div class="tags"
+                     id="matchedSkills">
+
+                </div>
+
+            </div>
+
+            <!-- MISSING SKILLS -->
+            <div class="skills-section"
+                 id="missingSection">
+
+                <h3>
+
+                    Missing Skills for
+                    <span id="missingRole"></span>
+
+                </h3>
+
+                <div class="tags missing"
+                     id="skillsMissing">
+
+                </div>
+
+            </div>
+
+            <!-- SUGGESTIONS -->
+            <div class="skills-section">
+
+                <h3>
+                    Suggestions
+                </h3>
+
+                <ul id="suggestionsList">
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}">
+    </script>
+
+</body>
+
+</html>
