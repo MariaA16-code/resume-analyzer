@@ -28,24 +28,13 @@ Technologies Used
 - spaCy
 - pdfplumber
 
-Project Structure
-
-Resume-Analyzer/
-│
-├── app.py
-├── requirements.txt
-├── uploads/
-├── templates/
-│   └── index.html
-└── static/
-    ├── css/
-    │   └── style.css
-    └── js/
-        └── main.js
 
 Installation
 
 git clone <https://github.com/MariaA16-code/resume-analyzer.git>
+
 cd Resume-Analyzer
+
 pip install -r requirements.txt
+
 python app.py
