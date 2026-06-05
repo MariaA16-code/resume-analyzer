@@ -1,43 +1,27 @@
-Resume Analyzer Web Application
 
-Live Demo:
-https://resume-analyzer-20dr.onrender.com
+# Resume Analyzer
 
-A Flask-based Resume Analyzer that analyzes PDF resumes and provides:
+## Overview
+Built this to practice working with PDF parsing and keyword extraction 
+using NLP techniques.
 
-- ATS Score
-- Skill Gap Analysis
-- Resume Suggestions
-- Contact Information Extraction
-- Role-Based Resume Evaluation
+## Tech Stack
+- Python, Flask
+- PyPDF2, spaCy
+- HTML, CSS, JavaScript
 
-Features
+## Features
+- Upload PDF resume
+- Keyword extraction and skill detection
 
-- Upload PDF resumes
-- Extract resume text from PDF
-- Extract name, email, and phone number
-- ATS score calculation
-- Role-based analysis
-- Missing skills detection
-- Resume improvement suggestions
-
-Technologies Used
-
-- Python
-- Flask
-- HTML
-- CSS
-- JavaScript
-- spaCy
-- pdfplumber
-
-
-Installation
-
-git clone <https://github.com/MariaA16-code/resume-analyzer.git>
-
-cd Resume-Analyzer
-
+## Run Locally
+```bash
 pip install -r requirements.txt
-
 python app.py
+```
+
+## Live Demo
+View on Render (https://resume-analyzer-20dr.onrender.com)
+
+
+
