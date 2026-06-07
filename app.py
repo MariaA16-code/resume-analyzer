@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, jsonify
 import pdfplumber
-import spacy
 import os
 import re
 from werkzeug.utils import secure_filename
@@ -12,7 +11,7 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5MB limit
 
 # ───────────────── LOAD NLP MODEL ─────────────────
-nlp = spacy.load('en_core_web_sm')
+
 
 # ───────────────── SKILLS DATABASE ─────────────────
 SKILLS = [
@@ -65,12 +64,11 @@ def extract_text(pdf_path):
 
 # ───────────────── EXTRACT NAME USING SPACY ─────────────────
 def extract_name(text):
-    doc = nlp(text)
-
-    for ent in doc.ents:
-        if ent.label_ == 'PERSON':
-            return ent.text
-
+    lines = text.strip().split('\n')
+    for line in lines[:5]:
+        line = line.strip()
+        if line and len(line.split()) <= 4 and line.replace(' ', '').isalpha():
+            return line
     return 'Not found'
 
 
@@ -269,6 +267,8 @@ def analyze():
 
 
 # ───────────────── MAIN ─────────────────
+import nltk
+nltk.download('punkt', quiet=True)
 if __name__ == '__main__':
 
     os.makedirs('uploads', exist_ok=True)
