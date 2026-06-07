@@ -9,8 +9,7 @@ app = Flask(__name__)
 # ───────────────── CONFIG ─────────────────
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5MB limit
-
-# ───────────────── LOAD NLP MODEL ─────────────────
+os.makedirs('uploads', exist_ok=True)
 
 
 # ───────────────── SKILLS DATABASE ─────────────────
